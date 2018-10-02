@@ -1,0 +1,150 @@
+
+:root {
+  --character-color: #da2b90;
+  --film-color: #d9a203;
+  --vehicle-color: #90CAF9;
+  --species-color: #ffc501;
+  --starships-color: #51f1e3;
+  --planets-color: #e38ed8;
+}
+
+.StartPage__list
+{
+  display: flex;
+  flex-wrap: wrap;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.ExploreItems .card {
+  max-width: 320px;
+  margin: 15px;
+}
+
+
+body{
+  background: black;
+}
+
+.characters{
+  color: var(--character-color);
+}
+.films{
+  color: var(--film-color);
+  padding: 5px;
+}
+.vehicles{
+  color: var(--vehicle-color);
+}
+
+.species{
+  color: var(--species-color);
+}
+.starships{
+   color: var(--starships-color);
+ }
+.planets{
+  color: var(--planets-color);
+}
+/* #ffc501
+   #f9ddfc
+   #e38ed8
+   #da2b90
+   #44052c
+   */
+
+@font-face {
+  font-family: jedi;
+  src: url(./fonts/Starjedi.ttf)
+}
+
+@font-face {
+  font-family: jedi-outline;
+  src: url(./fonts/Starjhol.ttf)
+}
+
+.jedi-font {
+  font-family: jedi;
+}
+
+.ExploreItems .card-body .card-title
+{
+  font-family: jedi;
+}
+
+.ExploreItems .card-img-overlay,
+.FilmItems .card-img-overlay
+{
+  display: none;
+}
+.ExploreItems:hover{
+  cursor: pointer;
+}
+.FilmItems:hover .card-img
+{
+  opacity: .2;
+}
+.ExploreItems:hover .card .img
+{
+  opacity: .5;
+}
+
+
+.FilmItems:hover .card-img-overlay
+{
+  display: block;
+  background: black;
+  opacity: .8;
+}
+
+.ExploreItems:hover .card-img-overlay
+{
+  display: block;
+}
+.ExploreItems:hover .card-body{
+  opacity: .2;
+}
+.ExploreItems:hover .card-img-overlay .card-title{
+  color: gray;
+  font-family: jedi;
+}
+.films .card-title
+{
+  color: var(--film-color);
+}
+.ExploreItems:hover .card-img-overlay .card-text{
+  font-size: large;
+  text-align: center;
+  padding-top: 20%;
+  font-family: jedi;
+}
+
+.ExploreItems:hover .card-img-overlay .card-text a{
+  color: black;
+  font-family: jedi-outline;
+}
+
+.header
+{
+  height: 100px;
+  text-align: center;
+}
+.star-wars-title-font {
+  color: #FFEE58!important;
+  font-size: 3em;
+  font-family: jedi-outline;
+}
+
+.sweet-loading
+{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.FilmDetails
+{
+  padding-left: 10px;
+}

@@ -1,0 +1,9 @@
+@import '../../theme/variables';
+
+.DesignerAppHeader__questionicon {
+  margin-left: 10px;
+
+  &.slds-icon {
+    fill: $color-link-linktext;
+  }
+}
