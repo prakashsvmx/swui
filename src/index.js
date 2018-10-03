@@ -9,7 +9,7 @@ import './theme/index.css';
 const store = makeStore();
 ReactDOM.render(
   <Provider store={store}>
-    <StarWarsAppContainer />
+    <StarWarsAppContainer/>
   </Provider>,
   document.getElementById('root'),
 );

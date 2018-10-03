@@ -1,37 +1,38 @@
-import { deleteObjectProperty} from "../utils";
+import { deleteObjectProperty } from '../utils';
 
 export const HTTP_REQUEST_LOADING = 'HTTP_REQUEST_LOADING';
 export const HTTP_REQUEST_FAILED = 'HTTP_REQUEST_FAILED';
 export const HTTP_REQUEST_LOADED = 'HTTP_REQUEST_LOADED';
 
-export const httpRequestLoadingActionType = { type: HTTP_REQUEST_LOADING };
-export const httpRequestFailedActionType = { type: HTTP_REQUEST_FAILED };
-export const httpRequestLoadedActionType = { type: HTTP_REQUEST_LOADED };
+export const httpRequestLoadingActionType = {type: HTTP_REQUEST_LOADING};
+export const httpRequestFailedActionType = {type: HTTP_REQUEST_FAILED};
+export const httpRequestLoadedActionType = {type: HTTP_REQUEST_LOADED};
 
 const _ = require('lodash');
-const intitialState = {
-};
+const intitialState = {};
 
-export function httpRequestInProgress(dispatch, httpRequestTrackingKey) {
+export function httpRequestInProgress (dispatch, httpRequestTrackingKey) {
   dispatch({
     ...httpRequestLoadingActionType,
     httpLoadTrackingKey: httpRequestTrackingKey,
   });
 }
-export function httpRequestFailure(dispatch, httpRequestTrackingKey) {
+
+export function httpRequestFailure (dispatch, httpRequestTrackingKey) {
   dispatch({
     ...httpRequestFailedActionType,
     httpLoadTrackingKey: httpRequestTrackingKey,
   });
 }
-export function httpRequestSuccess(dispatch, httpRequestTrackingKey) {
+
+export function httpRequestSuccess (dispatch, httpRequestTrackingKey) {
   dispatch({
     ...httpRequestLoadedActionType,
     httpLoadTrackingKey: httpRequestTrackingKey,
   });
 }
 
-export function getHttpResponseDataHandler(dispatch, serviceResponse, httpRequestTrackingKey) {
+export function getHttpResponseDataHandler (dispatch, serviceResponse, httpRequestTrackingKey) {
   return new Promise((resolve, reject) => {
     if (_.isEmpty(serviceResponse)) {
       httpRequestFailure(dispatch, httpRequestTrackingKey);
@@ -42,7 +43,7 @@ export function getHttpResponseDataHandler(dispatch, serviceResponse, httpReques
   });
 }
 
-export default function httpRequestLoadingMiddleware({ dispatch }) {
+export default function httpRequestLoadingMiddleware ({dispatch}) {
   return next => action => {
     const {
       isHttpAction,
@@ -69,13 +70,13 @@ export default function httpRequestLoadingMiddleware({ dispatch }) {
       // action.success(dispatch, resp, error);
 
       let responsePromise = null;
-        const respObj = serviceResponse.json();
-        responsePromise = respObj.then((restResponseData) => {
-            const restResponse = getHttpResponseDataHandler(dispatch,
-                restResponseData,
-                httpLoadTrackingKey);
-            return restResponse;
-        });
+      const respObj = serviceResponse.json();
+      responsePromise = respObj.then((restResponseData) => {
+        const restResponse = getHttpResponseDataHandler(dispatch,
+          restResponseData,
+          httpLoadTrackingKey);
+        return restResponse;
+      });
       const returnPromise = action.responseHandler(dispatch, responsePromise);
       if (returnPromise) {
         returnPromise.then(() => {
@@ -90,15 +91,15 @@ export default function httpRequestLoadingMiddleware({ dispatch }) {
   };
 }
 
-export function httpRequestLoadingReducer(state = intitialState, action) {
+export function httpRequestLoadingReducer (state = intitialState, action) {
   if (action.httpLoadTrackingKey) {
-    const { httpLoadTrackingKey, type } = action;
+    const {httpLoadTrackingKey, type} = action;
     switch (type) {
       case HTTP_REQUEST_LOADING:
-        return { ...state, [httpLoadTrackingKey]: true };
+        return {...state, [httpLoadTrackingKey]: true};
       case HTTP_REQUEST_FAILED:
       case HTTP_REQUEST_LOADED: {
-        const clonedState = { ...state };
+        const clonedState = {...state};
         deleteObjectProperty(clonedState, httpLoadTrackingKey);
         return clonedState;
       }

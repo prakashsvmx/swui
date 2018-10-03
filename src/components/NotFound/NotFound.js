@@ -1,8 +1,3 @@
-/**
- * @author Prakash S
- * @copyright 2017 ServiceMax from GE Digital.
- *Created by prakash on 3/8/18.
- */
 import React from 'react';
 
 const NotFound = () => (

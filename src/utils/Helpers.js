@@ -1,17 +1,4 @@
-
-import {
-  filter,
-  find,
-  flatten,
-  includes,
-  intersection,
-  isArray,
-  isEmpty,
-  isObject,
-  isPlainObject,
-  orderBy,
-  sortBy,
-} from 'lodash';
+import { isArray,  isPlainObject } from 'lodash';
 /*
 Interface for Reflect.deleteObjectProperty with an additional capability to pass array of keys
 @param sourceObj : The object from which you want to delete the key
@@ -48,23 +35,25 @@ export const deleteObjectProperty = (sourceObj, keysToDelete) => {
   return result;
 };
 
-export function toRomanNumeral(n) {
-    if (!Number.isInteger(n)) return false;
-    let i, r, decimal , roman;
-    r = "";
-    decimal = [1,   4,   5,   9,  10,  40,  50,  90, 100, 400, 500, 900,1000];
-    roman = ["I","IV", "V","IX", "X","XL", "L","XC", "C","CD", "D","CM", "M"];
-    for (i = 12; i >= 0; i--) {
-        while (n >= decimal[i]) {
-            r += roman[i];
-            n -= decimal[i];
-        }
+export function toRomanNumeral (n) {
+  if (!Number.isInteger(n)) {
+    return false;
+  }
+  let i, r, decimal, roman;
+  r = '';
+  decimal = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
+  roman = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D', 'CM', 'M'];
+  for (i = 12; i >= 0; i--) {
+    while (n >= decimal[i]) {
+      r += roman[i];
+      n -= decimal[i];
     }
-    return r;
+  }
+  return r;
 }
 
-export function indexKeyFormatter(url) {
-    const [id] = url.match(/([0-9])+/g);
-    return id;
+export function indexKeyFormatter (url) {
+  const [id] = url.match(/([0-9])+/g);
+  return id;
 
 }
