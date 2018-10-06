@@ -6,8 +6,8 @@ export function initAppActionCreator () {
     type: ActionTypes.INIT_APP,
   };
 };
-
-export const getEntityApiDataSuccess = (data, entityType, indexKey) => {
+//apiResponseData, entityType, indexKey, pageNumber)
+export const getEntityApiDataSuccess = (data, entityType, indexKey, pageNumber) => {
   let entityTypeInUpperCase = entityType.toUpperCase();
   return ({
     data,
@@ -15,10 +15,11 @@ export const getEntityApiDataSuccess = (data, entityType, indexKey) => {
     meta: {
       entityType: entityType,
       indexKey: indexKey,
+      pageNumber:pageNumber
     },
   });
 };
 
 export const getEntityApiData = (entityType, indexKey, pageNumber, callback) => dispatch => {
-  dispatch(getEntityTypeApiDataList(entityType, indexKey, pageNumber, callback));
+  dispatch(getEntityTypeApiDataList(entityType, indexKey, pageNumber, callback, dispatch));
 };

@@ -7,6 +7,28 @@ const intitialState = {
   films: {},
   people: {},
 };
+
+function getFormattedActionData(action) {
+
+    const {data: {results},
+    } = action;
+    const formattedResults = results.map((result) => {
+            const {films = [], characters = [], planets = [], starships = [], vehicles = [], species = []} = result;
+            return ({
+                ...result,
+                films: films.map(indexKeyFormatter),
+                characters: characters.map(indexKeyFormatter),
+                planets: planets.map(indexKeyFormatter),
+                starships: starships.map(indexKeyFormatter),
+                vehicles: vehicles.map(indexKeyFormatter),
+                species: species.map(indexKeyFormatter),
+
+            });
+        },
+    );
+    return formattedResults;
+
+}
 export default function entityDataReducer (state = intitialState, action) {
   const {
     meta: {
@@ -18,25 +40,15 @@ export default function entityDataReducer (state = intitialState, action) {
   //const entityIndexKey =  action.meta.indexKey;
   const entityTypeUpper = entityType.toUpperCase();
 
+
   let dataItems = {};
   if (entityType && action.type === `GET_${entityTypeUpper}_SUCCESS`) {
 
-    const {data: {results, count, next, previous}} = action;
-    const formattedResults = results.map((result) => {
-        const {films = [], characters = [], planets = [], starships = [], vehicles = [], species = []} = result;
-        return ({
-          ...result,
-          films: films.map(indexKeyFormatter),
-          characters: characters.map(indexKeyFormatter),
-          planets: planets.map(indexKeyFormatter),
-          starships: starships.map(indexKeyFormatter),
-          vehicles: vehicles.map(indexKeyFormatter),
-          species: species.map(indexKeyFormatter),
+      const {data: { count, next, previous},
+      } = action;
 
-        });
-      },
-    );
-    const formattedData = formattedResults;
+     // if(next) debugger;
+    const formattedData = getFormattedActionData(action);
 
     if (entityType === EntityTypes.FILMS) {
       dataItems = _.mapKeys(formattedData, indexKey);
@@ -47,6 +59,7 @@ export default function entityDataReducer (state = intitialState, action) {
       }));
       dataItems = _.mapKeys(idMapping, 'id');
     }
+    const {list=[]} = state[entityType] || {};
     const newState = {
       ...state,
       [entityType]: {
@@ -55,7 +68,7 @@ export default function entityDataReducer (state = intitialState, action) {
           next,
           previous,
         },
-        list: {...dataItems},
+        list: {...list,...dataItems},
       },
     };
 
