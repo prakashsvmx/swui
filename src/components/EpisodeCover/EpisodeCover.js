@@ -17,16 +17,15 @@ class EpisodeCover extends React.PureComponent {
         planets,
         starships,
         vehicles,
-        species,
-
+        species
       } = {},
-    } = this.props;
+    } = this.props
 
     return (
       <Card>
         <CardBody>
           <CardHeader> {toRomanNumeral(episode_id)}. {title}</CardHeader>
-          <CardImg width="100%" onerror="this.src='../assets/images/noimage.jpg'"
+          <CardImg width="100%" onError="this.src='../assets/images/noimage.jpg'"
                    src={`https://starwars-visualguide.com/assets/img/films/${episode_id}.jpg`}/>
 
           <CardImgOverlay>

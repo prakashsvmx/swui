@@ -12,7 +12,7 @@ class StarWarsAppContainer extends Component {
     getEntityApiData(EntityTypes.FILMS, 'episode_id');
     setTimeout(() => {
       getEntityApiData(EntityTypes.PEOPLE);
-      getEntityApiData(EntityTypes.PLANETS);
+     getEntityApiData(EntityTypes.PLANETS);
       getEntityApiData(EntityTypes.SPECIES);
       getEntityApiData(EntityTypes.STARSHIPS);
       getEntityApiData(EntityTypes.VEHICLES);

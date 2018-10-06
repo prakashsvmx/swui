@@ -47,6 +47,35 @@ body{
 .planets{
   color: var(--planets-color);
 }
+
+.RelatedList.species span {
+  background-color: var(--species-color);
+}
+
+.RelatedList.vehicles span {
+  background-color: var(--vehicle-color);
+}
+
+.RelatedList.starships span {
+  background-color: var(--starships-color);
+}
+
+.RelatedList.films span {
+  background-color: var(--film-color);
+}
+
+.RelatedList.planets span {
+  background-color: var(--planets-color);
+}
+
+.RelatedList.people span {
+  background-color: var(--character-color);
+}
+
+.FilmDetails .opening_crawl
+{
+  color: #ffc25b;
+}
 /* #ffc501
    #f9ddfc
    #e38ed8
@@ -147,4 +176,22 @@ body{
 .FilmDetails
 {
   padding-left: 10px;
+}
+
+.RelatedList
+{
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.EntityRefBadge{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.RelatedListAvatar
+{
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
 }
